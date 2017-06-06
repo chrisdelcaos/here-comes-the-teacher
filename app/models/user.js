@@ -50,7 +50,7 @@ const User = db.define('user', {
             bcrypt.hash(user.password, salt, null, (err, hash) => {
                 if (err) return err;
                 user.password = hash;
-                next();
+                //next();
             });
         });
     }

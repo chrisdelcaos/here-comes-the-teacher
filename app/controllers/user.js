@@ -1,24 +1,28 @@
 'use strict';
 
-const mongoose = require('mongoose');
+const Sequelize = require('sequelize');
 const User = require('../models/user');
 const service = require('../services/index');
 
 //funcion de registro
 function signUp (req, res) {
     //instancia de nuevo usuario, asume desde modelo USER
-    const user = new User({
+    const user = User.build({
         email: req.body.email,
-        displayName: req.body.displayName,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         password: req.body.password
     });
 
-    user.save((err) => {
-        if (err) {
-            res.status(500).send({message: `error al registrar el usuario: ${err}`})
-        } 
+    user.save()
+    .then(function(data){
+        console.log(data)
         return res.status(200).send({token: service.createToken(user)});
-    });
+    })
+    .catch(function(error){
+        console.log(error);
+        res.status(500).send({message: `error al registrar el usuario: ${err}`})
+    })
 }
 
 //login

@@ -1,6 +1,6 @@
 'use strict';
 
-const jwt = require('jwt-simple'); //jason web token
+const jwt = require('jwt-simple'); //json web token
 const moment = require('moment'); //libreria para manejar fechas ;)
 const config = require('../../config');
 
