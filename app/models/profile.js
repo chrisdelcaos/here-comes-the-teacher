@@ -1,7 +1,7 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const db = require('../../index.js');
+const db = require('../../db');
 
 const Profile = db.define('profile', {
     name: {
@@ -18,6 +18,6 @@ const Profile = db.define('profile', {
         notEmpty: true,
         }
     }
-})
+});
 
 module.exports = Profile;
