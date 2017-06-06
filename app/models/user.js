@@ -39,8 +39,8 @@ const User = db.define('user', {
     // `this` refers to the class, but the instance(s) is the first argument many hook functions
     // this is a contrived example! Hooks are useful in more complicated dbs, but in this case,
     // if a puppy's favorite food is pizza, we override the user input with a particularly delicious variety
-        beforeCreate: function(User, options) {
-             const SALT_FACTOR = 5;
+        beforeValidate: function(User, options) {
+            const SALT_FACTOR = 5;
 
             if (!User.changed('password')) {
                 return db.Promise.reject("not modified");
@@ -48,9 +48,9 @@ const User = db.define('user', {
 
             return bcrypt.genSaltAsync(SALT_FACTOR).then(function(salt) {
             return bcrypt.hashAsync(User.password, salt, null)
-            }).then(function(hash) {
-                User.setDataValue('password', hash);
-            });
+                }).then(function(hash) {
+                    User.setDataValue('password', hash);
+                });
         }
     }
 })

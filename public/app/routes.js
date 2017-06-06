@@ -2,13 +2,13 @@ angular.module('appRoutes',['ngRoute'])
     .config(function($routeProvider, $locationProvider){
         $routeProvider
         .when('/', {
-            templateUrl: 'app/views/pages/home.html'
+            templateUrl: 'app/views/pages/users/login.html'
         })
         .when('/about', {
             templateUrl: 'app/views/pages/about.html'
         })
         .when('/register', {
-            templateUrl: 'app/views/pages/users/register.html'
+            templateUrl: 'app/views/pages/users/login.html'
         })
         .otherwise({redirectTo: '/'});
 
