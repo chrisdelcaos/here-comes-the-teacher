@@ -10,7 +10,10 @@ const config = require('./config.js');
 
 app.listen(config.port, () => {
     console.log(`API REST Corriendo en http://localhost:${config.port}`);
-    db.sync({force: true})
+    db.sync({
+      force: true,
+      logging: console.log
+    })
     .then(message => {
       console.log('Conexion a BD establecida');
     })

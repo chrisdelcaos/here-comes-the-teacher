@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    
-  },
+  "scripts": {},
   "author": "Cristopher Vicuña",
   "license": "MIT",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "jwt-simple": "^0.5.1",

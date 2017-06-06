@@ -16,12 +16,11 @@ function signUp (req, res) {
 
     user.save()
     .then(function(data){
-        console.log(data)
         return res.status(200).send({token: service.createToken(user)});
     })
     .catch(function(error){
         console.log(error);
-        res.status(500).send({message: `error al registrar el usuario: ${err}`})
+        res.status(500).send({message: `error al registrar el usuario: ${error}`})
     })
 }
 
