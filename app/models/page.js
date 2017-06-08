@@ -1,7 +1,7 @@
-/*'use strict';
+'use strict';
 
 const Sequelize = require('sequelize');
-const db = require('../../index');
+const db = require('../../db');
 
 const Page = db.define('page', {
     name: {
@@ -20,4 +20,4 @@ const Page = db.define('page', {
     }
 });
 
-module.exports = Page;*/
+module.exports = Page;
