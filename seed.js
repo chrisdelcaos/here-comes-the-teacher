@@ -3,6 +3,7 @@ const Promise = require('bluebird');
 const db = require('./db');
 //modelos
 const Profile = require('./app/models/profile');
+const User = require('./app/models/user');
 /*const Park = require('./models/Park');
 const Food = require('./models/Food');
 const Location = require('./models/Location');*/
@@ -59,6 +60,14 @@ db.sequelize.sync({ force: true })
 })
 .then(createdProfiles => {
   console.log(`${createdProfiles.length} Profiles created`);
+})
+.then(() => {
+  return Promise.map(userData, function(user) {
+    return User.create(user);
+  })
+})
+.then(createdUsers => {
+  console.log(`${createdUsers.length} Users created`);
 })
 // here, we go through all the models one by one, create each
 // element from the seed arrays above, and log how many are created
