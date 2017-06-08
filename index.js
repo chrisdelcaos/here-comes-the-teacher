@@ -5,8 +5,8 @@ const db = require('./db');
 
 app.listen(config.port, () => {
     console.log(`API REST Corriendo en http://localhost:${config.port}`);
-    db.sync({
-      force: true,
+    db.sequelize.sync({
+      force: false,
       logging: console.log
     })
     .then(message => {

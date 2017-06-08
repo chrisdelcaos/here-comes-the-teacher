@@ -1,11 +1,10 @@
 'use strict';
 
-const Sequelize = require('sequelize');
 const db = require('../../db');
 
-const PageProfile = db.define('pageProfile', {
+const PageProfile = db.sequelize.define('pageProfile', {
     status: {
-        type: Sequelize.BOOLEAN,
+        type: db.Sequelize.BOOLEAN,
         allowNull: false,
         validate: {
             notEmpty: true,

@@ -1,108 +1,71 @@
 // importing Bluebird promises so we can Promise.map
-const Promise = require('bluebird');
+//const Promise = require('bluebird');
 const db = require('./db');
 //modelos
-/*const Puppy = require('./models/Puppy');
-const Park = require('./models/Park');
+const Profile = require('./app/models/profile');
+/*const Park = require('./models/Park');
 const Food = require('./models/Food');
 const Location = require('./models/Location');*/
 
 // each of the following array will be iterated and Created
-const locationData = [
+const profileData = [
   {
-    address: '11th Floor, 5 Hanover Square, NY'
+    name: 'admin',
+    status: true
   },
   {
-    address: '450 Flatbush Ave, Brooklyn'
+    name: 'teacher',
+    status: false
   },
   {
-    address: 'Washington Square, NY'
-  },
+    name: 'student',
+    status: true
+  }
 ]
 
-const puppyData = [
+const userData = [
   {
-    firstName: 'Puppy',
-    lastName: 'Doggo',
-    age: 1,
+    email: 'chrisdelcaos@devchile.cl',
+    firstName: 'Christopher',
+    lastName: 'Vicuña',
+    password: 'password',
+    profileId: 1
   },
   {
-    firstName: 'Pupster',
-    lastName: 'Puppo',
-    age: 2,
+    email: 'profesor@devchile.cl',
+    firstName: 'Profesor',
+    lastName: 'Jirafales',
+    password: 'qwerty',
+    profileId: 2
   },
   {
-    firstName: 'Mr.',
-    lastName: 'Puppyface',
-    age: 3,
-  },
-  {
-    firstName: 'Ham',
-    lastName: 'Sandwich',
-    age: 1,
-  },
-  {
-    firstName: 'Jon',
-    lastName: 'MacPuppald',
-    age: 2,
-  },
-  {
-    firstName: 'Omri',
-    lastName: 'Puppstein',
-    age: 1,
-  },
-];
-
-const foodData = [
-  {
-    name: 'pizza',
-    deliciousness: 4,
-  },
-  {
-    name: 'dumplings',
-    deliciousness: 5,
-  },
-  {
-    name: 'lettuce',
-    deliciousness: 3,
-  },
-  {
-    name: 'kao soi',
-    deliciousness: 5,
-  },
-  {
-    name: 'cheetos',
-    deliciousness: 5,
-  },
-]
-
-const parkData = [
-  {
-    name: 'Fullstack Park',
-  },
-  {
-    name: 'Prospect Park',
-  },
-  {
-    name: 'Washington Square Park',
+    email: 'alumno@devchile.cl',
+    firstName: 'Alumno',
+    lastName: 'Destacado',
+    password: 'cthulhu',
+    profileId: 3
   },
 ]
 
 // Sync and restart db before seeding
-db.sync({ force: true })
+db.sequelize.sync({ force: true })
 .then(() => {
-  console.log('DB Conectada y datos antiguos eliminados');
+  console.log('DB Sync & Data Dropped');
+  return Profile.create(profileData).then(profile => {
+    console.log('datos insertados');
+  });
 })
 // here, we go through all the models one by one, create each
 // element from the seed arrays above, and log how many are created
 /*.then(() => {
-  return Promise.map(locationData, function(location) {
-    return Location.create(location);
+  return Promise.map(profileData, function(profiles) {
+    return Profile.create(profiles);
   })
 })
-.then(createdLocations => {
-  console.log(`${createdLocations.length} locations created`);
-})
+.then(createdProfiles => {
+  console.log(`${createdProfiles.length} profiles created`);
+})*/
+/*
 .then(() => {
   return Promise.map(puppyData, puppy => Puppy.create(puppy))
 })
@@ -124,11 +87,12 @@ db.sync({ force: true })
 .then(() => {
   console.log('Seeded successfully');
 })
+*/
 .catch(err => {
   console.error('Error!', err, err.stack);
 })
 .finally(() => {
-  db.close();
+  db.sequelize.close();
   console.log('Finished!');
   return null;
-});*/
+});

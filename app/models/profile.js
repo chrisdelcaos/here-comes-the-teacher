@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize');
 const db = require('../../db');
 
-const Profile = db.define('profile', {
+const Profile = db.sequelize.define('profile', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,

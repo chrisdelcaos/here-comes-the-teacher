@@ -11,7 +11,8 @@ function signUp (req, res) {
         email: req.body.email,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        password: req.body.password
+        password: req.body.password,
+        profileId: req.body.profileId
     });
 
     user.save()
@@ -26,16 +27,18 @@ function signUp (req, res) {
 
 //login
 function signIn (req, res) {
-    User.find({email: req.body.displayName}, (err, user) => {
-        if (err) return res.status(500).send({mesagge: err})//internal server error
-        if (!user) return res.status(404).send({message: 'No existe el usuario'})//not found
-        
-        req.user = user;
-        res.status(200).send({
-            mesagge: 'Te has logueado correctamente',
-            token: service.createToken(user)
-        });
-    })
+    User.findOne({ where: {email: req.body.email} })
+        .then(user => {
+            if (!user) return res.status(404).send({message: 'No existe el usuario'});//not found
+            req.user = user;
+            res.status(200).send({
+                mesagge: 'Te has logueado correctamente',
+                token: service.createToken(user)
+            })
+        })
+        .catch(err => {
+            if (err) return res.status(500).send({mesagge: err})//internal server error
+        })
 }
 
 module.exports = {
