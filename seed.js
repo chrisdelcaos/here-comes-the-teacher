@@ -1,5 +1,5 @@
 // importing Bluebird promises so we can Promise.map
-//const Promise = require('bluebird');
+const Promise = require('bluebird');
 const db = require('./db');
 //modelos
 const Profile = require('./app/models/profile');
@@ -51,9 +51,14 @@ const userData = [
 db.sequelize.sync({ force: true })
 .then(() => {
   console.log('DB Sync & Data Dropped');
-  return Profile.create(profileData).then(profile => {
-    console.log('datos insertados');
-  });
+})
+.then(() => {
+  return Promise.map(profileData, function(profile) {
+    return Profile.create(profile);
+  })
+})
+.then(createdProfiles => {
+  console.log(`${createdProfiles.length} Profiles created`);
 })
 // here, we go through all the models one by one, create each
 // element from the seed arrays above, and log how many are created
