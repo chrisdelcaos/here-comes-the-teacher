@@ -91,7 +91,7 @@ const parkData = [
 // Sync and restart db before seeding
 db.sync({ force: true })
 .then(() => {
-  console.log('synced DB and dropped old data');
+  console.log('DB Conectada y datos antiguos eliminados');
 })
 // here, we go through all the models one by one, create each
 // element from the seed arrays above, and log how many are created
