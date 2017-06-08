@@ -17,6 +17,13 @@ const Page = db.sequelize.define('page', {
         notEmpty: true,
         }
     },
+    icon: {
+        type: db.Sequelize.STRING,
+        allowNull: false,
+        validate: {
+        notEmpty: true,
+        }
+    },
     menuName: {
         type: db.Sequelize.STRING,
         allowNull: false,
