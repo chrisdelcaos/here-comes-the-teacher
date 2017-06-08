@@ -10,8 +10,29 @@ const Page = db.sequelize.define('page', {
         notEmpty: true,
         }
     },
-    status: {
-        type: db.Sequelize.BOOLEAN,
+    urlName: {
+        type: db.Sequelize.STRING,
+        allowNull: false,
+        validate: {
+        notEmpty: true,
+        }
+    },
+    menuName: {
+        type: db.Sequelize.STRING,
+        allowNull: false,
+        validate: {
+        notEmpty: true,
+        }
+    },
+    depends: {
+        type: db.Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+        notEmpty: true,
+        }
+    },
+    pageOrder: {
+        type: db.Sequelize.INTEGER,
         allowNull: false,
         validate: {
         notEmpty: true,
