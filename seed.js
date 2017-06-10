@@ -112,6 +112,34 @@ const pageData = [
     pageOrder: 7
   }
 ]
+
+const pageProfileData = [
+  { profileId: 1, pageId: 1, status: 1 },
+  { profileId: 1, pageId: 2, status: 1 },
+  { profileId: 1, pageId: 3, status: 1 },
+  { profileId: 1, pageId: 4, status: 1 },
+  { profileId: 1, pageId: 5, status: 1 },
+  { profileId: 1, pageId: 6, status: 1 },
+  { profileId: 1, pageId: 7, status: 1 },
+  { profileId: 1, pageId: 8, status: 1 },
+  { profileId: 2, pageId: 1, status: 1 },
+  { profileId: 2, pageId: 2, status: 1 },
+  { profileId: 2, pageId: 3, status: 1 },
+  { profileId: 2, pageId: 4, status: 1 },
+  { profileId: 2, pageId: 5, status: 1 },
+  { profileId: 2, pageId: 6, status: 1 },
+  { profileId: 2, pageId: 7, status: 1 },
+  { profileId: 2, pageId: 8, status: 1 },
+  { profileId: 3, pageId: 1, status: 1 },
+  { profileId: 3, pageId: 2, status: 1 },
+  { profileId: 3, pageId: 3, status: 1 },
+  { profileId: 3, pageId: 4, status: 1 },
+  { profileId: 3, pageId: 5, status: 1 },
+  { profileId: 3, pageId: 6, status: 1 },
+  { profileId: 3, pageId: 7, status: 1 },
+  { profileId: 3, pageId: 8, status: 1 },
+]
+
 // Sync and restart db before seeding
 db.sequelize.sync({ force: true })
 .then(() => {
